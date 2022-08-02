@@ -35,15 +35,14 @@ class Tareas(models.Model):
 
 class Herramientas(models.Model):
     nombre = models.CharField(max_length=30)
-    tipo_de_tarea = models.ForeignKey(Tareas, on_delete=models.CASCADE)
-    responsable_de_uso = models.ForeignKey(Empleado, on_delete=models.CASCADE)
     disponible =  models.BooleanField()
+    tipo_de_tarea = models.ForeignKey(Tareas, on_delete=models.CASCADE)
 
     class Meta():
-        ordering = ('nombre', 'tipo_de_tarea','responsable_de_uso', 'disponible') # Ordena.
+        ordering = ('nombre', 'disponible', 'tipo_de_tarea') # Ordena.
         verbose_name = 'Herramienta'
         verbose_name_plural = 'Herramientas'
 
     def __str__(self) -> str:
-       return f'{self.dia_de_creacion}, {self.nombre}'
+       return f'{self.nombre}'
     # Muestra en la pagina del Admin "apellido, nombre"
